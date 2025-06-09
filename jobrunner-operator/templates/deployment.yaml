@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-controller
+  labels:
+    app: jobrunner-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jobrunner-controller
+  template:
+    metadata:
+      labels:
+        app: jobrunner-controller
+    spec:
+      containers:
+        - name: controller
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: KOPF_SSL_VERIFY
+              value: "false"
+            - name: PYTHONWARNINGS
+              value: "ignore"
+          command: ["kopf", "run", "--standalone", "--verbose", "main.py"]
+          workingDir: /app

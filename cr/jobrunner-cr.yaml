@@ -1,0 +1,7 @@
+apiVersion: myorg.io/v1
+kind: JobRunner
+metadata:
+  name: demo-job
+  namespace: shield
+spec:
+  command: ["echo", "hello from kopf"]

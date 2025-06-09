@@ -1,0 +1,4 @@
+image:
+  repository: spakal/jobrunner-controller
+  tag: latest
+  pullPolicy: Always

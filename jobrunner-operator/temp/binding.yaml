@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: jobrunner-rolebinding
+  namespace: shield
+subjects:
+- kind: ServiceAccount
+  name: default  # or whatever SA your pod runs as
+  namespace: shield
+roleRef:
+  kind: Role
+  name: jobrunner-role
+  apiGroup: rbac.authorization.k8s.io

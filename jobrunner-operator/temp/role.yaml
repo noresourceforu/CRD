@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: jobrunner-role
+  namespace: shield
+rules:
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["create", "patch"]
+  - apiGroups: ["myorg.io"]
+    resources: ["jobrunners"]
+    verbs: ["get", "list", "watch", "create", "update", "patch"]
